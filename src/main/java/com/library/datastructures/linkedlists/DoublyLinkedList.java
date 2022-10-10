@@ -65,7 +65,7 @@ public class DoublyLinkedList<V> {
      * O(1) since it directly uses the tail
      *
      * Operation: append
-     * Inputs/Outputs: list, a linked list
+     * Inputs/Outputs: list, a doubly linked list
      * Input: value, object
      * Preconditions: true
      * Postconditions: value is the tail of the linked list
@@ -77,6 +77,7 @@ public class DoublyLinkedList<V> {
         if (isEmpty()) {
             head = tail = node;
         } else {
+            node.setPrevious(tail);
             tail.setNext(node);
             tail = node;
         }
@@ -117,16 +118,30 @@ public class DoublyLinkedList<V> {
         Node<V> node = new Node<>(value);
         if (index == 0) {
             node.setNext(head);
+            head.setPrevious(node);
             head = node;
         } else {
-            Node<V> before = head;
-            int pointer = 0;
-            while (pointer < index - 1) {
-                before = before.getNext();
-                pointer++;
+            int middle = size / 2;
+            Node<V> next;
+            if (index > middle) {
+                next = tail;
+                int pointer = size - 1;
+                while (pointer > index) {
+                    next = next.getPrevious();
+                    pointer--;
+                }
+            } else {
+                next = head;
+                int pointer = 0;
+                while (pointer < index) {
+                    next = next.getNext();
+                    pointer++;
+                }
             }
-            node.setNext(before.getNext());
-            before.setNext(node);
+            node.setNext(next);
+            node.setPrevious(next.getPrevious());
+            next.getPrevious().setNext(node);
+            next.setPrevious(node);
         }
         size++;
     }
@@ -143,14 +158,27 @@ public class DoublyLinkedList<V> {
 
         if (index == 0) {
             head = head.getNext();
+            head.setPrevious(null);
         } else {
-            Node<V> before = head;
-            int pointer = 0;
-            while (pointer < index - 1) {
-                before = before.getNext();
-                pointer++;
+            int middle = size / 2;
+            Node<V> next;
+            if (index > middle) {
+                next = tail;
+                int pointer = size - 1;
+                while (pointer > index) {
+                    next = next.getPrevious();
+                    pointer--;
+                }
+            } else {
+                next = head;
+                int pointer = 0;
+                while (pointer < index) {
+                    next = next.getNext();
+                    pointer++;
+                }
             }
-            before.setNext(before.getNext().getNext());
+            next.getPrevious().setNext(next.getNext());
+            next.getNext().setPrevious(next.getPrevious());
 
             if (before.getNext() == null) {
                 tail = before;
@@ -166,5 +194,42 @@ public class DoublyLinkedList<V> {
                 ", tail=" + tail.getValue() +
                 ", size=" + size +
                 "]";
+    }
+
+    public static class Node<V> {
+
+        private V value;
+
+        private Node<V> next;
+
+        private Node<V> previous;
+
+        public Node(V value) {
+            this.value = value;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        public void setValue(V value) {
+            this.value = value;
+        }
+
+        public Node<V> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<V> next) {
+            this.next = next;
+        }
+
+        public Node<V> getPrevious() {
+            return previous;
+        }
+
+        public void setPrevious(Node<V> previous) {
+            this.previous = previous;
+        }
     }
 }
