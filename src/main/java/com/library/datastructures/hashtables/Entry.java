@@ -1,4 +1,4 @@
-package com.library.datastructures.hashtable;
+package com.library.datastructures.hashtables;
 
 public class Entry<K, V> {
 
@@ -17,6 +17,14 @@ public class Entry<K, V> {
 
     public V getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Entry [" +
+            "key: " + key +
+            ", value: " + value +
+            "]";
     }
 
     @Override

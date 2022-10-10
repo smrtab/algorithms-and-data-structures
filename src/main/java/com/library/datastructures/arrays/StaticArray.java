@@ -27,6 +27,14 @@ public class StaticArray<T> implements Iterable<T>  {
         return size;
     }
 
+    /**
+     * Function: get
+     * Inputs: index, int
+     * Preconditions: 0 <= index < |items|
+     * Output: item, object
+     * Postconditions: value such that value = items[index]
+     * @param   index   index at which to replace value
+     */
     public T get(int index) {
         if (index >= size) {
             throw new IndexOutOfBoundsException();
@@ -34,6 +42,15 @@ public class StaticArray<T> implements Iterable<T>  {
         return items[index];
     }
 
+    /**
+     * Operation: set
+     * Inputs/Outputs: items, an array
+     * Inputs: index, int; item, object
+     * Preconditions: 0 <= index < |items|
+     * Postconditions: post-values = pre-values[0] ... pre-values[index - 1], value, pre-values[index + 1]
+     * @param   index   index at which to replace value
+     * @param   item    new value at given index
+     */
     public void set(int index, T item) {
         if (index >= size) {
             throw new IndexOutOfBoundsException();
@@ -41,10 +58,26 @@ public class StaticArray<T> implements Iterable<T>  {
         items[index] = item;
     }
 
+    /**
+     * Operation: add
+     * Inputs/Outputs: items, an array
+     * Inputs: item, object
+     * Preconditions: true
+     * Postconditions: post-values = pre-values[0] ... pre-values[|items| - 1], value
+     * @param   item   value to insert
+     */
     public void add(T item) {
         insert(size, item);
     }
 
+    /**
+     * Operation: insert
+     * Inputs/Outputs: items, an array
+     * Inputs: item, object
+     * Preconditions: 0 <= index < |items|
+     * Postconditions: post-values = pre-values[0] ... pre-values[index - 1], value, pre-values[index]
+     * @param   item   value to insert at given index
+     */
     public void insert(int index, T item) {
         for (int i = size - 1; i == index; i++) {
             items[i + 1] = items[i];
@@ -53,15 +86,31 @@ public class StaticArray<T> implements Iterable<T>  {
         size++;
     }
 
+    /**
+     * Operation: remove
+     * Inputs/Outputs: items, an array
+     * Inputs: index, int
+     * Preconditions: 0 <= index < |items|
+     * Postconditions: post-values = pre-values[0] ... pre-values[index - 1], pre-values[index + 1]
+     * @param  index   index at which to remove the item
+     */
     public T remove(int index) {
         T item = items[index];
-        for (int i = index; i < size - 1; i++) {
+        for (int i = index; i < size; i++) {
             items[i] = items[i + 1];
         }
         size--;
         return item;
     }
 
+    /**
+     * Operation: remove
+     * Inputs/Outputs: items, an array
+     * Inputs: item, object
+     * Preconditions: true
+     * Postconditions: post-values = pre-values[0] ... pre-values[index - 1], pre-values[index + 1]
+     * @param   item   item to remove
+     */
     public T remove(T item) {
         int index = indexOf(item);
         return index == -1
@@ -69,6 +118,14 @@ public class StaticArray<T> implements Iterable<T>  {
             : remove(index);
     }
 
+    /**
+     * Function: indexOf
+     * Inputs: item, object
+     * Preconditions: true
+     * Output: index, int
+     * Postconditions: index such that item = items[index]
+     * @param   item   index at which to the item is located
+     */
     public int indexOf(T item) {
         int index = -1;
         for (int i = 0; i < size; i++) {

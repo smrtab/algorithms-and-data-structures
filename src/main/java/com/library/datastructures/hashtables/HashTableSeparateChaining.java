@@ -1,11 +1,12 @@
-package com.library.datastructures.hashtable;
+package com.library.datastructures.hashtables;
 
 import com.library.datastructures.arrays.DynamicArray;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class HashTableSeparateChaining<K, V> {
+public class HashTableSeparateChaining<K, V> implements Iterable<K> {
 
     protected static final int CAPACITY = 10;
 
@@ -62,14 +63,14 @@ public class HashTableSeparateChaining<K, V> {
 
         Entry<K, V> result = null;
         int index = 0;
-        while (result == null) {
+        while (result == null && index < bucket.getSize()) {
             if (bucket.get(index).getKey().equals(key)) {
-                result = bucket.get(0);
+                result = bucket.get(index);
             }
             index++;
         }
 
-        return result.getValue();
+        return result != null ? result.getValue() : null;
     }
 
     @SuppressWarnings("unchecked")
@@ -92,5 +93,28 @@ public class HashTableSeparateChaining<K, V> {
                 ", size: " + size +
                 ", items: " + Arrays.toString(items) +
                 "]";
+    }
+
+    @Override
+    public Iterator<K> iterator() {
+
+        return new Iterator<>() {
+            int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public V next() {
+                return get()[index++];
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
     }
 }
