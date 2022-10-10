@@ -1,8 +1,6 @@
 package com.library.datastructures.linkedlists;
 
-import com.library.datastructures.arrays.StaticArray;
-
-public class LinkedList<V> {
+public class DoublyLinkedList<V> {
 
     private Node<V> head;
 
@@ -37,8 +35,8 @@ public class LinkedList<V> {
         }
 
         return current != null
-            ? current.getValue()
-            : null;
+                ? current.getValue()
+                : null;
     }
 
     /**
@@ -102,7 +100,6 @@ public class LinkedList<V> {
         }
         Node<V> node = head;
         head = head.getNext();
-        size--;
         return node.getValue();
     }
 
@@ -165,23 +162,9 @@ public class LinkedList<V> {
     @Override
     public String toString() {
         return "LinkedList [" +
-            "head: " + head.getValue() +
-            ", tail: " + tail.getValue() +
-            ", size: " + size +
-            ", items: " + toArray() +
-            "]";
-    }
-
-    public StaticArray<V> toArray() {
-        StaticArray<V> staticArray = new StaticArray<>(size);
-        Node<V> current = head;
-        if (current != null) {
-            staticArray.add(current.getValue());
-            while (current.getNext() != null) {
-                current = current.getNext();
-                staticArray.add(current.getValue());
-            }
-        }
-        return staticArray;
+                "head: " + head.getValue() +
+                ", tail=" + tail.getValue() +
+                ", size=" + size +
+                "]";
     }
 }

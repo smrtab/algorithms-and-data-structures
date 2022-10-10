@@ -107,8 +107,8 @@ public class HashTableSeparateChaining<K, V> implements Iterable<K> {
             }
 
             @Override
-            public V next() {
-                return get()[index++];
+            public K next() {
+                return items[0].get(0).getKey();
             }
 
             @Override

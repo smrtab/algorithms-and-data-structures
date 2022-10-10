@@ -3,6 +3,7 @@ package com.library;
 import com.library.datastructures.arrays.DynamicArray;
 import com.library.datastructures.hashtables.HashTableSeparateChaining;
 import com.library.datastructures.linkedlists.LinkedList;
+import com.library.datastructures.queues.LinkedQueue;
 import com.library.datastructures.stacks.Stack;
 
 public class Main {
@@ -12,6 +13,7 @@ public class Main {
         testHashTableSeparateChaining();
         testLinkedList();
         testStack();
+        testLinkedQueue();
     }
 
     private static void testDynamicArrayAppending() {
@@ -37,7 +39,7 @@ public class Main {
     private static void testLinkedList() {
         System.out.println("\n======= LinkedList =======");
         LinkedList<Integer> linkedList = new LinkedList<>();
-        int[] input = new int[24];
+        int[] input = new int[5];
         for (int i = 0; i < input.length; i++) {
             linkedList.append(i);
             System.out.println(linkedList);
@@ -55,28 +57,59 @@ public class Main {
         linkedList.insert(linkedList.getSize() - 1, 100);
         System.out.println(linkedList);
 
-        System.out.println("Check value at this index");
-        Integer value = linkedList.get(21);
-        System.out.println(value);
+        Integer value = linkedList.get(linkedList.getSize() - 2);
+        System.out.print("Check value at this index: " + value);
     }
 
     private static void testStack() {
         System.out.println("\n======= Stack =======");
-        Stack<Integer> stack = new Stack<>();
-        int[] input = new int[24];
+        Stack<Integer> stack = new Stack<>(5);
+        int[] input = new int[5];
         for (int i = 0; i < input.length; i++) {
             stack.push(i);
             System.out.println(stack);
         }
 
-        System.out.println("Pop stack");
-        int popedValue = stack.pop();
-        System.out.println("Poped: " + popedValue);
+        int poppedValue = stack.pop();
+        System.out.println("Popped: " + poppedValue);
         System.out.println(stack);
 
-        System.out.println("Peek stack");
+        poppedValue = stack.pop();
+        System.out.println("Popped: " + poppedValue);
+        System.out.println(stack);
+
+        poppedValue = stack.pop();
+        System.out.println("Popped: " + poppedValue);
+        System.out.println(stack);
+
         int peekedValue = stack.peek();
         System.out.println("Peeked: " + peekedValue);
         System.out.println(stack);
+    }
+
+    private static void testLinkedQueue() {
+        System.out.println("\n======= LinkedQueue =======");
+        LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
+        int[] input = new int[5];
+        for (int i = 0; i < input.length; i++) {
+            linkedQueue.enqueue(i);
+            System.out.println(linkedQueue);
+        }
+
+        int dequeuedValue = linkedQueue.dequeue();
+        System.out.println("Dequeued: " + dequeuedValue);
+        System.out.println(linkedQueue);
+
+        dequeuedValue = linkedQueue.dequeue();
+        System.out.println("Dequeued: " + dequeuedValue);
+        System.out.println(linkedQueue);
+
+        dequeuedValue = linkedQueue.dequeue();
+        System.out.println("Dequeued: " + dequeuedValue);
+        System.out.println(linkedQueue);
+
+        int peekedValue = linkedQueue.peek();
+        System.out.println("Peeked: " + peekedValue);
+        System.out.println(linkedQueue);
     }
 }
