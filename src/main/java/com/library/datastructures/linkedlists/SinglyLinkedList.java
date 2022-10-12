@@ -2,7 +2,37 @@ package com.library.datastructures.linkedlists;
 
 import com.library.datastructures.arrays.StaticArray;
 
-public class LinkedList<V> {
+import java.util.Iterator;
+import java.util.function.Consumer;
+
+public class SinglyLinkedList<V> implements LinkedListADT<V>, Iterable<V> {
+
+    public static class Node<V> {
+
+        private V value;
+
+        private Node<V> next;
+
+        public Node(V value) {
+            this.value = value;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        public void setValue(V value) {
+            this.value = value;
+        }
+
+        public Node<V> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<V> next) {
+            this.next = next;
+        }
+    }
 
     private Node<V> head;
 
@@ -113,7 +143,7 @@ public class LinkedList<V> {
      */
     public void insert(int index, V value) {
 
-        if (index >= size || index < 0) {
+        if (index > size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
 
@@ -131,6 +161,11 @@ public class LinkedList<V> {
             node.setNext(before.getNext());
             before.setNext(node);
         }
+
+        if (node.getNext() == null) {
+            tail = node;
+        }
+
         size++;
     }
 
@@ -164,7 +199,7 @@ public class LinkedList<V> {
 
     @Override
     public String toString() {
-        return "LinkedList [" +
+        return "SinglyLinkedList [" +
             "head: " + head.getValue() +
             ", tail: " + tail.getValue() +
             ", size: " + size +
@@ -175,40 +210,37 @@ public class LinkedList<V> {
     public StaticArray<V> toArray() {
         StaticArray<V> staticArray = new StaticArray<>(size);
         Node<V> current = head;
-        if (current != null) {
+        while (current != null) {
             staticArray.add(current.getValue());
-            while (current.getNext() != null) {
-                current = current.getNext();
-                staticArray.add(current.getValue());
-            }
+            current = current.getNext();
         }
         return staticArray;
     }
 
-    public static class Node<V> {
+    @Override
+    public Iterator<V> iterator() {
+        return new Iterator<>() {
 
-        private V value;
+            Node<V> node = head;
+            int currentIndex, nextIndex  = 0;
 
-        private Node<V> next;
+            @Override
+            public boolean hasNext() {
+                return node != null && node.getNext() != null;
+            }
 
-        public Node(V value) {
-            this.value = value;
-        }
+            @Override
+            public V next() {
+                V next = node.getNext().getValue();
+                node = node.getNext();
+                currentIndex = nextIndex++;
+                return next;
+            }
 
-        public V getValue() {
-            return value;
-        }
-
-        public void setValue(V value) {
-            this.value = value;
-        }
-
-        public Node<V> getNext() {
-            return next;
-        }
-
-        public void setNext(Node<V> next) {
-            this.next = next;
-        }
+            @Override
+            public void remove() {
+                SinglyLinkedList.this.remove(currentIndex);
+            }
+        };
     }
 }

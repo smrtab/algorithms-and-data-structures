@@ -1,7 +1,6 @@
 package com.library.datastructures.queues;
 
 import com.library.datastructures.arrays.DynamicArray;
-import com.library.datastructures.linkedlists.LinkedList;
 
 public class ArrayQueue<T> implements QueueADT<T> {
 

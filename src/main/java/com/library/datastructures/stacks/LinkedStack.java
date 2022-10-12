@@ -1,13 +1,13 @@
 package com.library.datastructures.stacks;
 
-import com.library.datastructures.linkedlists.LinkedList;
+import com.library.datastructures.linkedlists.SinglyLinkedList;
 
 public class LinkedStack<T> implements StackADT<T> {
 
-    private final LinkedList<T> items;
+    private final SinglyLinkedList<T> items;
 
     public LinkedStack() {
-        items = new LinkedList<>();
+        items = new SinglyLinkedList<>();
     }
 
     /**

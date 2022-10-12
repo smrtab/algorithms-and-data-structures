@@ -1,6 +1,8 @@
 package com.library.datastructures.linkedlists;
 
-public class DoublyLinkedList<V> {
+import com.library.datastructures.arrays.StaticArray;
+
+public class DoublyLinkedList<V> implements LinkedListADT<V> {
 
     private Node<V> head;
 
@@ -27,12 +29,7 @@ public class DoublyLinkedList<V> {
             throw new IndexOutOfBoundsException();
         }
 
-        Node<V> current = head;
-        int pointer = 0;
-        while (pointer < index) {
-            current = current.getNext();
-            pointer++;
-        }
+        Node<V> current = find(index);
 
         return current != null
                 ? current.getValue()
@@ -50,13 +47,7 @@ public class DoublyLinkedList<V> {
             throw new IndexOutOfBoundsException();
         }
 
-        Node<V> current = head;
-        int pointer = 0;
-        while (pointer < index) {
-            current = current.getNext();
-            pointer++;
-        }
-
+        Node<V> current = find(index);
         current.setValue(value);
     }
 
@@ -121,23 +112,7 @@ public class DoublyLinkedList<V> {
             head.setPrevious(node);
             head = node;
         } else {
-            int middle = size / 2;
-            Node<V> next;
-            if (index > middle) {
-                next = tail;
-                int pointer = size - 1;
-                while (pointer > index) {
-                    next = next.getPrevious();
-                    pointer--;
-                }
-            } else {
-                next = head;
-                int pointer = 0;
-                while (pointer < index) {
-                    next = next.getNext();
-                    pointer++;
-                }
-            }
+            Node<V> next = find(index);
             node.setNext(next);
             node.setPrevious(next.getPrevious());
             next.getPrevious().setNext(node);
@@ -160,40 +135,62 @@ public class DoublyLinkedList<V> {
             head = head.getNext();
             head.setPrevious(null);
         } else {
-            int middle = size / 2;
-            Node<V> next;
-            if (index > middle) {
-                next = tail;
-                int pointer = size - 1;
-                while (pointer > index) {
-                    next = next.getPrevious();
-                    pointer--;
-                }
-            } else {
-                next = head;
-                int pointer = 0;
-                while (pointer < index) {
-                    next = next.getNext();
-                    pointer++;
-                }
-            }
-            next.getPrevious().setNext(next.getNext());
-            next.getNext().setPrevious(next.getPrevious());
+            Node<V> node = find(index);
+            node.getPrevious().setNext(node.getNext());
 
-            if (before.getNext() == null) {
-                tail = before;
+            if (node.getNext() == null) {
+                tail = node.getPrevious();
+            } else {
+                node.getNext().setPrevious(node.getPrevious());
             }
         }
         size--;
     }
 
+    /**
+     * Finds a node in the linked list
+     * @param   index   an index to locate the node
+     * @return  node    the node located at the given index
+     */
+    private Node<V> find(int index) {
+        int middle = size / 2;
+        Node<V> node;
+        if (index > middle) {
+            node = tail;
+            int pointer = size - 1;
+            while (pointer > index) {
+                node = node.getPrevious();
+                pointer--;
+            }
+        } else {
+            node = head;
+            int pointer = 0;
+            while (pointer < index) {
+                node = node.getNext();
+                pointer++;
+            }
+        }
+        return node;
+    }
+
     @Override
     public String toString() {
-        return "LinkedList [" +
+        return "DoublyLinkedList [" +
                 "head: " + head.getValue() +
-                ", tail=" + tail.getValue() +
-                ", size=" + size +
+                ", tail: " + tail.getValue() +
+                ", size: " + size +
+                ", items: " + toArray() +
                 "]";
+    }
+
+    public StaticArray<V> toArray() {
+        StaticArray<V> staticArray = new StaticArray<>(size);
+        Node<V> current = head;
+        while (current != null) {
+            staticArray.add(current.getValue());
+            current = current.getNext();
+        }
+        return staticArray;
     }
 
     public static class Node<V> {

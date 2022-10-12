@@ -42,7 +42,6 @@ public class HashTableSeparateChaining<K, V> implements Iterable<K> {
         if (bucket == null) {
             bucket = new DynamicArray<>(1);
             items[hashTableIndex] = bucket;
-            size++;
         }
 
         Entry<K, V> entry = new Entry<>(key, value);
@@ -50,6 +49,7 @@ public class HashTableSeparateChaining<K, V> implements Iterable<K> {
         int bucketIndex = bucket.indexOf(entry);
         if (bucketIndex == -1) {
             bucket.add(entry);
+            size++;
         } else {
             bucket.set(bucketIndex, entry);
         }
@@ -62,24 +62,64 @@ public class HashTableSeparateChaining<K, V> implements Iterable<K> {
         DynamicArray<Entry<K, V>> bucket = items[hashTableIndex];
 
         Entry<K, V> result = null;
-        int index = 0;
-        while (result == null && index < bucket.getSize()) {
-            if (bucket.get(index).getKey().equals(key)) {
-                result = bucket.get(index);
+        if (bucket != null) {
+            int index = 0;
+            while (result == null && index < bucket.getSize()) {
+                if (bucket.get(index).getKey().equals(key)) {
+                    result = bucket.get(index);
+                }
+                index++;
             }
-            index++;
         }
 
         return result != null ? result.getValue() : null;
     }
 
+    /**
+     * Operation: remove.
+     * Inputs/Outputs: items, a hashtable
+     * Input: key, an object
+     * Preconditions: true
+     * Output: value, an object
+     * Postconditions: post-values
+     * @param   key a key associated with a value to delete.
+     * @return  value  removed value or null
+     */
+    public V remove(K key) {
+        int hashTableIndex = normalizeKey(key);
+        DynamicArray<Entry<K, V>> bucket = items[hashTableIndex];
+
+        int bucketIndex = -1;
+        if (bucket != null) {
+            int index = 0;
+            while (bucketIndex == -1 && index < bucket.getSize()) {
+                if (bucket.get(index).getKey().equals(key)) {
+                    bucketIndex = index;
+                } else {
+                    index++;
+                }
+            }
+        }
+
+        V result = null;
+        if (bucketIndex != -1) {
+            result = bucket.remove(bucketIndex).getValue();
+            if (bucket.getSize() == 0) {
+                items[hashTableIndex] = null;
+            }
+            size--;
+        }
+
+        return result;
+    }
+
     @SuppressWarnings("unchecked")
     private void adjust() {
         double usedUpCapacity = capacity * threshold;
-        if (usedUpCapacity <= size) {
+        if (usedUpCapacity <= items.length) {
             capacity = capacity * 2;
             DynamicArray<Entry<K, V>>[] newItems = (DynamicArray<Entry<K, V>>[]) Array.newInstance(DynamicArray.class, capacity);
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < items.length; i++) {
                 newItems[i] = items[i];
             }
             items = newItems;

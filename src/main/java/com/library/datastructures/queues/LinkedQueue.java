@@ -1,34 +1,34 @@
 package com.library.datastructures.queues;
 
-import com.library.datastructures.linkedlists.LinkedList;
+import com.library.datastructures.linkedlists.SinglyLinkedList;
 
 public class LinkedQueue<T> implements QueueADT<T> {
 
-    private final LinkedList<T> linkedList;
+    private final SinglyLinkedList<T> singlyLinkedList;
 
     public LinkedQueue() {
-        linkedList = new LinkedList<>();
+        singlyLinkedList = new SinglyLinkedList<>();
     }
 
     @Override
     public void enqueue(T value) {
-        linkedList.append(value);
+        singlyLinkedList.append(value);
     }
 
     @Override
     public T dequeue() {
-        return linkedList.popFirst();
+        return singlyLinkedList.popFirst();
     }
 
     @Override
     public T peek() {
-        return linkedList.get(0);
+        return singlyLinkedList.get(0);
     }
 
     @Override
     public String toString() {
         return "LinkedQueue [" +
-            "linkedList: " + linkedList +
+            "linkedList: " + singlyLinkedList +
             "]";
     }
 }
