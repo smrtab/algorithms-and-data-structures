@@ -165,6 +165,14 @@ public class Main {
             System.out.println(singlyLinkedPriorityQueue);
         }
 
+        singlyLinkedPriorityQueue.enqueue(10, 4);
+        System.out.println("Enqueue priority 4: ");
+        System.out.println(singlyLinkedPriorityQueue);
+
+        singlyLinkedPriorityQueue.enqueue(11, 3);
+        System.out.println("Enqueue priority 3: ");
+        System.out.println(singlyLinkedPriorityQueue);
+
         int dequeuedValue = singlyLinkedPriorityQueue.dequeue();
         System.out.println("Dequeued: " + dequeuedValue);
         System.out.println(singlyLinkedPriorityQueue);

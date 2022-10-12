@@ -3,7 +3,6 @@ package com.library.datastructures.linkedlists;
 import com.library.datastructures.arrays.StaticArray;
 
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 public class SinglyLinkedList<V> implements LinkedListADT<V>, Iterable<V> {
 
@@ -226,13 +225,24 @@ public class SinglyLinkedList<V> implements LinkedListADT<V>, Iterable<V> {
 
             @Override
             public boolean hasNext() {
-                return node != null && node.getNext() != null;
+                boolean hasNext;
+                if (nextIndex == 0) {
+                    hasNext = node != null;
+                } else {
+                    hasNext = node.getNext() != null;
+                }
+                return hasNext;
             }
 
             @Override
             public V next() {
-                V next = node.getNext().getValue();
-                node = node.getNext();
+                V next;
+                if (nextIndex == 0) {
+                    next = node.getValue();
+                } else {
+                    next = node.getNext().getValue();
+                    node = node.getNext();
+                }
                 currentIndex = nextIndex++;
                 return next;
             }
