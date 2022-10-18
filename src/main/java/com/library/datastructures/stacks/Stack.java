@@ -39,11 +39,11 @@ public class Stack<T> implements StackADT<T> {
      */
     @Override
     public T pop() {
-        return items.remove(items.getSize() - 1);
+        return items.remove(items.size() - 1);
     }
 
     /**
-     * Function: pop
+     * Function: peek
      * Inputs: items, a stack
      * Preconditions: 0 < |items|
      * Output: value, object
@@ -51,11 +51,11 @@ public class Stack<T> implements StackADT<T> {
      */
     @Override
     public T peek() {
-        return items.get(items.getSize() - 1);
+        return items.get(items.size() - 1);
     }
 
     public int getSize() {
-        return items.getSize();
+        return items.size();
     }
 
     @Override

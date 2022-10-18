@@ -6,6 +6,8 @@ import com.library.datastructures.linkedlists.DoublyLinkedList;
 import com.library.datastructures.linkedlists.SinglyLinkedList;
 import com.library.datastructures.priorityqueues.SinglyLinkedPriorityQueue;
 import com.library.datastructures.queues.LinkedQueue;
+import com.library.datastructures.sets.HashSet;
+import com.library.datastructures.sets.SetADT;
 import com.library.datastructures.stacks.Stack;
 
 public class Main {
@@ -18,6 +20,7 @@ public class Main {
         testStack();
         testLinkedQueue();
         testSinglyLinkedPriorityQueue();
+        testHashSet();
     }
 
     private static void testDynamicArrayAppending() {
@@ -37,6 +40,10 @@ public class Main {
         for (int i = 0; i < input.length; i++) {
             hashTableSeparateChaining.add(input[i], i);
             System.out.println(hashTableSeparateChaining);
+        }
+
+        for (String key : hashTableSeparateChaining) {
+            System.out.print(key + " ");
         }
     }
 
@@ -188,5 +195,66 @@ public class Main {
         int peekedValue = singlyLinkedPriorityQueue.peek();
         System.out.println("Peeked: " + peekedValue);
         System.out.println(singlyLinkedPriorityQueue);
+    }
+
+    private static void testHashSet() {
+        System.out.println("\n======= HashSet =======");
+        HashSet<Integer> hashSet = new HashSet<>();
+        int[] input = new int[5];
+        for (int i = 0; i < input.length; i++) {
+            hashSet.add(i);
+            System.out.println(hashSet);
+        }
+
+        System.out.println("Try to add them again: ");
+        for (int i = 0; i < input.length; i++) {
+            hashSet.add(i);
+            System.out.println(hashSet);
+        }
+
+        System.out.print("Iterator: ");
+        for (int item : hashSet) {
+            System.out.print(item + " ");
+        }
+
+        System.out.println("\nRemove value 0");
+        hashSet.remove(0);
+        System.out.print("Iterator: ");
+        for (int item : hashSet) {
+            System.out.print(item + " ");
+        }
+
+        System.out.println("\nRemove value 3");
+        hashSet.remove(3);
+        System.out.print("Iterator: ");
+        for (int item : hashSet) {
+            System.out.print(item + " ");
+        }
+
+        int[] inputForUnion = new int[] {5, 6, 7};
+        HashSet<Integer> hashSetForUnion = new HashSet<>();
+        for (int i = 0; i < inputForUnion.length; i++) {
+            hashSetForUnion.add(inputForUnion[i]);
+        }
+
+        int[] inputForIntersection = new int[] {2, 4, 5};
+        HashSet<Integer> hashSetForIntersection = new HashSet<>();
+        for (int i = 0; i < inputForIntersection.length; i++) {
+            hashSetForIntersection.add(inputForIntersection[i]);
+        }
+
+        System.out.println("\nUnion with {5, 6, 7}");
+        SetADT<Integer> union = hashSet.union(hashSetForUnion);
+        System.out.print("Iterator: ");
+        for (int item : union) {
+            System.out.print(item + " ");
+        }
+
+        System.out.println("\nIntersection with {2, 4, 5}");
+        SetADT<Integer> intersection = union.intersection(hashSetForIntersection);
+        System.out.print("Iterator: ");
+        for (int item : intersection) {
+            System.out.print(item + " ");
+        }
     }
 }

@@ -23,7 +23,7 @@ public class StaticArray<T> implements Iterable<T>  {
         this.capacity = capacity;
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
@@ -140,11 +140,7 @@ public class StaticArray<T> implements Iterable<T>  {
     @Override
     public String toString() {
         return this.getClass().getSimpleName() +
-            " [" +
-            "capacity: " + capacity +
-            ", size: " + size +
-            ", items: " + Arrays.toString(items) +
-            "]";
+            " [" + capacity + " / " + size + ", " + Arrays.toString(items) + "]";
     }
 
     @Override
