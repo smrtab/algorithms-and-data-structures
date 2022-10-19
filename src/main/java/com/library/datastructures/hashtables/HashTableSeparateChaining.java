@@ -33,7 +33,7 @@ public class HashTableSeparateChaining<K, V> implements Iterable<K> {
     }
 
     public int size() {
-        return items.length;
+        return size;
     }
 
     private int normalizeKey(int hashCode) {
