@@ -2,7 +2,9 @@ package com.library.datastructures.linkedlists;
 
 import com.library.datastructures.arrays.StaticArray;
 
-public class DoublyLinkedList<V> implements LinkedListADT<V> {
+import java.util.Iterator;
+
+public class DoublyLinkedList<V> implements LinkedListADT<V>, Iterable<V> {
 
     private Node<V> head;
 
@@ -10,7 +12,7 @@ public class DoublyLinkedList<V> implements LinkedListADT<V> {
 
     private int size = 0;
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
@@ -92,6 +94,7 @@ public class DoublyLinkedList<V> implements LinkedListADT<V> {
         }
         Node<V> node = head;
         head = head.getNext();
+        size--;
         return node.getValue();
     }
 
@@ -191,6 +194,44 @@ public class DoublyLinkedList<V> implements LinkedListADT<V> {
             current = current.getNext();
         }
         return staticArray;
+    }
+
+    @Override
+    public Iterator<V> iterator() {
+        return new Iterator<>() {
+
+            Node<V> node = head;
+            int currentIndex, nextIndex  = 0;
+
+            @Override
+            public boolean hasNext() {
+                boolean hasNext;
+                if (nextIndex == 0) {
+                    hasNext = node != null;
+                } else {
+                    hasNext = node.getNext() != null;
+                }
+                return hasNext;
+            }
+
+            @Override
+            public V next() {
+                V next;
+                if (nextIndex == 0) {
+                    next = node.getValue();
+                } else {
+                    next = node.getNext().getValue();
+                    node = node.getNext();
+                }
+                currentIndex = nextIndex++;
+                return next;
+            }
+
+            @Override
+            public void remove() {
+                DoublyLinkedList.this.remove(currentIndex);
+            }
+        };
     }
 
     public static class Node<V> {

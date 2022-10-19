@@ -61,22 +61,22 @@ public class Main {
         System.out.println(singlyLinkedList);
 
         System.out.println("Remove last element");
-        singlyLinkedList.remove(singlyLinkedList.getSize() - 1);
+        singlyLinkedList.remove(singlyLinkedList.size() - 1);
         System.out.println(singlyLinkedList);
 
         System.out.println("Insert at last index");
-        singlyLinkedList.insert(singlyLinkedList.getSize() - 1, 100);
+        singlyLinkedList.insert(singlyLinkedList.size() - 1, 100);
         System.out.println(singlyLinkedList);
 
-        Integer value = singlyLinkedList.get(singlyLinkedList.getSize() - 2);
-        System.out.print("Value at index: " + (singlyLinkedList.getSize() - 2) + " = " + value);
+        Integer value = singlyLinkedList.get(singlyLinkedList.size() - 2);
+        System.out.print("Value at index: " + (singlyLinkedList.size() - 2) + " = " + value);
 
-        singlyLinkedList.set(singlyLinkedList.getSize() - 2, 200);
-        System.out.println("Set value 200 at index: " + (singlyLinkedList.getSize() - 2));
+        singlyLinkedList.set(singlyLinkedList.size() - 2, 200);
+        System.out.println("Set value 200 at index: " + (singlyLinkedList.size() - 2));
         System.out.println(singlyLinkedList);
 
-        value = singlyLinkedList.get(singlyLinkedList.getSize() - 2);
-        System.out.print("Value at index: " + (singlyLinkedList.getSize() - 2) + " = " + value);
+        value = singlyLinkedList.get(singlyLinkedList.size() - 2);
+        System.out.print("Value at index: " + (singlyLinkedList.size() - 2) + " = " + value);
     }
 
     private static void testDoublyLinkedList() {
@@ -93,22 +93,22 @@ public class Main {
         System.out.println(doublyLinkedList);
 
         System.out.println("Remove last element");
-        doublyLinkedList.remove(doublyLinkedList.getSize() - 1);
+        doublyLinkedList.remove(doublyLinkedList.size() - 1);
         System.out.println(doublyLinkedList);
 
         System.out.println("Insert at last index");
-        doublyLinkedList.insert(doublyLinkedList.getSize() - 1, 100);
+        doublyLinkedList.insert(doublyLinkedList.size() - 1, 100);
         System.out.println(doublyLinkedList);
 
-        Integer value = doublyLinkedList.get(doublyLinkedList.getSize() - 2);
-        System.out.println("Value at index: " + (doublyLinkedList.getSize() - 2) + " = " + value);
+        Integer value = doublyLinkedList.get(doublyLinkedList.size() - 2);
+        System.out.println("Value at index: " + (doublyLinkedList.size() - 2) + " = " + value);
 
-        doublyLinkedList.set(doublyLinkedList.getSize() - 2, 200);
-        System.out.println("Set value 200 at index: " + (doublyLinkedList.getSize() - 2));
+        doublyLinkedList.set(doublyLinkedList.size() - 2, 200);
+        System.out.println("Set value 200 at index: " + (doublyLinkedList.size() - 2));
         System.out.println(doublyLinkedList);
 
-        value = doublyLinkedList.get(doublyLinkedList.getSize() - 2);
-        System.out.println("Value at index: " + (doublyLinkedList.getSize() - 2) + " = " + value);
+        value = doublyLinkedList.get(doublyLinkedList.size() - 2);
+        System.out.println("Value at index: " + (doublyLinkedList.size() - 2) + " = " + value);
     }
 
     private static void testStack() {

@@ -39,7 +39,7 @@ public class SinglyLinkedList<V> implements LinkedListADT<V>, Iterable<V> {
 
     private int size = 0;
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 

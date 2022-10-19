@@ -1,3 +1,5 @@
+package hashtables;
+
 import com.library.datastructures.hashtables.HashTableSeparateChaining;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +41,13 @@ public class HashTableSeparateChainingTest {
 
     @Test
     void testHasKeyMethod3TimesFalse() {
+        assertFalse(hashTableSeparateChaining.hasKey("k"));
+        assertFalse(hashTableSeparateChaining.hasKey("q"));
+        assertFalse(hashTableSeparateChaining.hasKey("z"));
+    }
+
+    @Test
+    void testRemove3Entities() {
         assertFalse(hashTableSeparateChaining.hasKey("k"));
         assertFalse(hashTableSeparateChaining.hasKey("q"));
         assertFalse(hashTableSeparateChaining.hasKey("z"));

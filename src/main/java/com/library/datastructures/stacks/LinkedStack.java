@@ -51,7 +51,7 @@ public class LinkedStack<T> implements StackADT<T> {
     }
 
     public int getSize() {
-        return items.getSize();
+        return items.size();
     }
 
     @Override
