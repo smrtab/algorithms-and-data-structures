@@ -11,17 +11,24 @@ public class ArrayQueue<T> implements QueueADT<T> {
     }
 
     @Override
-    public void enqueue(T value) {
+    public int size() {
+        return items.size();
+    }
 
+    @Override
+    public void enqueue(T value) {
+        items.append(value);
     }
 
     @Override
     public T dequeue() {
-        return null;
+        T item = items.get(0);
+        items.remove(0);
+        return item;
     }
 
     @Override
     public T peek() {
-        return null;
+        return items.get(0);
     }
 }

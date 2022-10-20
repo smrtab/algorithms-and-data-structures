@@ -11,6 +11,11 @@ public class LinkedQueue<T> implements QueueADT<T> {
     }
 
     @Override
+    public int size() {
+        return singlyLinkedList.size();
+    }
+
+    @Override
     public void enqueue(T value) {
         singlyLinkedList.append(value);
     }

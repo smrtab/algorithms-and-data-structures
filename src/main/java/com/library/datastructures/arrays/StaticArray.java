@@ -36,7 +36,7 @@ public class StaticArray<T> implements Iterable<T>  {
      * @param   index   index at which to replace value
      */
     public T get(int index) {
-        if (index >= size) {
+        if (index > size) {
             throw new IndexOutOfBoundsException();
         }
         return items[index];
@@ -52,7 +52,7 @@ public class StaticArray<T> implements Iterable<T>  {
      * @param   item    new value at given index
      */
     public void set(int index, T item) {
-        if (index >= size) {
+        if (index >= capacity) {
             throw new IndexOutOfBoundsException();
         }
         items[index] = item;
@@ -68,6 +68,11 @@ public class StaticArray<T> implements Iterable<T>  {
      */
     public void add(T item) {
         insert(size, item);
+    }
+
+    // alias for add
+    public void append(T item) {
+        add(item);
     }
 
     /**

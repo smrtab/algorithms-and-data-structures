@@ -1,4 +1,4 @@
-package hashtables;
+package com.library.datastructures.hashtables;
 
 import com.library.datastructures.hashtables.HashTableSeparateChaining;
 import org.junit.jupiter.api.BeforeEach;

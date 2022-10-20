@@ -1,4 +1,4 @@
-package linkedlists;
+package com.library.datastructures.linkedlists;
 
 import com.library.datastructures.linkedlists.DoublyLinkedList;
 import org.junit.jupiter.api.BeforeEach;
