@@ -16,6 +16,11 @@ public class Stack<T> implements StackADT<T> {
         items = new DynamicArray<>(capacity);
     }
 
+    @Override
+    public int size() {
+        return items.size();
+    }
+
     /**
      * Operation: push
      * Inputs/Outputs: items, a stack

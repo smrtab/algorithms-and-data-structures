@@ -84,7 +84,7 @@ public class StaticArray<T> implements Iterable<T>  {
      * @param   item   value to insert at given index
      */
     public void insert(int index, T item) {
-        for (int i = size - 1; i == index; i++) {
+        for (int i = size - 1; i >= index; i--) {
             items[i + 1] = items[i];
         }
         items[index] = item;

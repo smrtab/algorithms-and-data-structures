@@ -1,5 +1,6 @@
 package com.library.datastructures.sets;
 
+import com.library.datastructures.arrays.DynamicArray;
 import com.library.datastructures.hashtables.HashTableSeparateChaining;
 
 import java.util.Iterator;
@@ -15,8 +16,17 @@ public class HashSet<T> implements SetADT<T> {
         set = new HashTableSeparateChaining<>();
     }
 
+    public HashSet(T item) {
+        this();
+        add(item);
+    }
+
     public int size() {
         return set.size();
+    }
+
+    public boolean isEmpty() {
+        return set.size() == 0;
     }
 
     /**
@@ -95,6 +105,15 @@ public class HashSet<T> implements SetADT<T> {
         return "HashSet ["
             + ", " + set +
             "]";
+    }
+
+    @Override
+    public DynamicArray<T> toArray() {
+        DynamicArray<T> list = new DynamicArray<>();
+        for (T item : this) {
+            list.add(item);
+        }
+        return list;
     }
 
     @Override

@@ -10,6 +10,11 @@ public class LinkedStack<T> implements StackADT<T> {
         items = new SinglyLinkedList<>();
     }
 
+    @Override
+    public int size() {
+        return items.size();
+    }
+
     /**
      * Operation: push
      * Inputs/Outputs: items, a stack
@@ -48,10 +53,6 @@ public class LinkedStack<T> implements StackADT<T> {
     @Override
     public T peek() {
         return items.get(0);
-    }
-
-    public int getSize() {
-        return items.size();
     }
 
     @Override
