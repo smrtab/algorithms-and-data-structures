@@ -79,8 +79,8 @@ public class Sequence<T extends Comparable<T>> {
         private boolean hasMultiple(T item, int start, int end) {
             if (start == end) {
                 return false;
-            } else if (items.get(start).equals(item)) {
-                return true;
+            } else if (start + 1 == end) {
+                return items.get(start).equals(item);
             } else {
                 int middle = start + (int) Math.floor((end - start) / 2);
                 boolean hasInLeft = hasMultiple(item, 0, middle);
