@@ -5,6 +5,9 @@ import com.library.datastructures.sets.HashSet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SequenceTest {
@@ -58,9 +61,41 @@ class SequenceTest {
     }
 
     @Test
+    void testMaxMultipleRecursion() {
+        assertEquals(items.maxMultipleRecursion(), 4);
+        assertNotEquals(items.maxMultipleRecursion(), 1);
+    }
+
+    @Test
     void testInsert() {
         items.insert(3, 100);
         assertEquals(items.get(3), 100);
         assertEquals(items.get(4), 3);
+    }
+
+    @Test
+    void testIsAscending() {
+        assertTrue(items.isAscending());
+        items.insert(2, 100);
+        assertFalse(items.isAscending());
+    }
+
+    @Test
+    void testIsAscendingRecursive() {
+        assertTrue(items.isAscendingRecursive());
+        items.insert(2, 100);
+        assertFalse(items.isAscending());
+    }
+
+    @Test
+    void testPermutations() {
+        int[] input = new int[3];
+        DynamicArray<Integer> array = new DynamicArray<>();
+        for (int i = 0; i < input.length; i++) {
+            array.add(i);
+        }
+        items = new Sequence<>(array);
+
+        System.out.println(items.permutations());
     }
 }
