@@ -10,6 +10,7 @@ interface BinaryTreeADT<T> {
     BinaryTreeADT<T> left();
     BinaryTreeADT<T> right();
     int size();
+    int height();
     String infix();
     void postfix();
     List<T> breadthFirstSearch();

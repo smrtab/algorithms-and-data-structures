@@ -37,6 +37,11 @@ class BinaryTreeTest {
     }
 
     @Test
+    public void testSize() {
+        assertEquals(7, tree.size());
+    }
+
+    @Test
     public void testHasPositive3Times() {
         assertTrue(tree.has("3"));
         assertTrue(tree.has("4"));
@@ -59,5 +64,10 @@ class BinaryTreeTest {
     public void testBFS() {
         //(((3 + 4) * 5) - 6)
         assertEquals("[-, *, 6, +, 5, 3, 4]", tree.breadthFirstSearch().toString());
+    }
+
+    @Test
+    public void testHeight() {
+        assertEquals(4, tree.height());
     }
 }

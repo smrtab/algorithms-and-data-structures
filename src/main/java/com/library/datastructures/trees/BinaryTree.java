@@ -64,6 +64,15 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
     }
 
     @Override
+    public int height() {
+        if (isLeaf()) {
+            return 1;
+        } else {
+            return Math.max(left().height(), right().height()) + 1;
+        }
+    }
+
+    @Override
     public int size() {
         if (this.isEmpty()) {
             return 0;
