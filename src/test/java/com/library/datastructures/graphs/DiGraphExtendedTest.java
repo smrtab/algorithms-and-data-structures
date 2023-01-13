@@ -8,13 +8,13 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DiGraphTest {
+class DiGraphExtendedTest {
 
-    private DiGraph<Integer> graph;
+    private DiGraphExtended<Integer> graph;
 
     @BeforeEach
     void setUp() {
-        graph = new DiGraph<>();
+        graph = new DiGraphExtended<>();
         graph.addNode(1);
         graph.addNode(2);
         graph.addNode(3);
@@ -32,7 +32,7 @@ class DiGraphTest {
 
     @Test
     public void testAddNode() {
-        graph = new DiGraph<>();
+        graph = new DiGraphExtended<>();
         graph.addNode(1);
         graph.addNode(2);
         assertTrue(graph.hasNode(1));
@@ -42,7 +42,7 @@ class DiGraphTest {
 
     @Test
     public void testAddEdges() {
-        graph = new DiGraph<>();
+        graph = new DiGraphExtended<>();
         graph.addNode(1);
         graph.addNode(2);
         graph.addNode(3);
@@ -76,14 +76,14 @@ class DiGraphTest {
 
     @Test
     public void testBsf() {
-        DiGraph<Integer> bsfGraph = graph.bsf(2);
+        DiGraphExtended<Integer> bsfGraph = graph.bsf(2);
         assertEquals(0, bsfGraph.outDegree(1));
         assertTrue(bsfGraph.hasEdge(2, 3));
     }
 
     @Test
     public void testDsf() {
-        DiGraph<Integer> bsfGraph = graph.dsf(2);
+        DiGraphExtended<Integer> bsfGraph = graph.dsf(2);
         assertEquals(0, bsfGraph.outDegree(1));
         assertTrue(bsfGraph.hasEdge(2, 3));
     }

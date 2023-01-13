@@ -1,6 +1,6 @@
 package com.library.datastructures.graphs;
 
-import javafx.util.Pair;
+import com.library.datastructures.common.Tuple;
 
 import java.util.HashSet;
 
@@ -15,7 +15,7 @@ public interface GraphADT<T> {
     void removeEdge(T from, T to);
 
     HashSet<T> nodes();
-    HashSet<Pair<T, T>> edges();
+    HashSet<Tuple<T, T>> edges();
 
     HashSet<T> outNeighbours(T value);
     HashSet<T> inNeighbours(T value);
@@ -24,4 +24,7 @@ public interface GraphADT<T> {
     int outDegree(T value);
     int inDegree(T value);
     int degree(T value);
+
+    GraphADT<T> bsf(T start);
+    GraphADT<T> dsf(T start);
 }

@@ -8,13 +8,13 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DiGraphTest {
+class WeightedDiGraphTest {
 
-    private DiGraph<Integer> graph;
+    private WeightedDiGraph<Integer> graph;
 
     @BeforeEach
     void setUp() {
-        graph = new DiGraph<>();
+        graph = new WeightedDiGraph<>();
         graph.addNode(1);
         graph.addNode(2);
         graph.addNode(3);
@@ -32,7 +32,7 @@ class DiGraphTest {
 
     @Test
     public void testAddNode() {
-        graph = new DiGraph<>();
+        graph = new WeightedDiGraph<>();
         graph.addNode(1);
         graph.addNode(2);
         assertTrue(graph.hasNode(1));
@@ -42,7 +42,7 @@ class DiGraphTest {
 
     @Test
     public void testAddEdges() {
-        graph = new DiGraph<>();
+        graph = new WeightedDiGraph<>();
         graph.addNode(1);
         graph.addNode(2);
         graph.addNode(3);
